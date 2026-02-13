@@ -1,0 +1,104 @@
+{
+  "name": "agentic-toolkit",
+  "displayName": "Agentic Toolkit",
+  "description": "Adversarial architecture pipeline for design, testing, implementation, and review.",
+  "version": "0.0.1",
+  "publisher": "agentic",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Chat",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "agentic-toolkit.agentic",
+        "name": "agentic",
+        "fullName": "Agentic Toolkit",
+        "description": "Adversarial architecture pipeline — design, test, build, review",
+        "isSticky": true,
+        "commands": [
+          { "name": "deliberate", "description": "War room: 3 personas design a feature" },
+          { "name": "gauntlet", "description": "Adversarial TDD: hostile QA writes breaking tests" },
+          { "name": "darwin", "description": "Generate 3 competing implementations and breed the winner" },
+          { "name": "implement", "description": "Build code from approved war room design" },
+          { "name": "review", "description": "Security-focused Red Team code review" },
+          { "name": "fix", "description": "Implement fixes from code review findings" },
+          { "name": "chaos", "description": "Chaos engineering: test the environment" },
+          { "name": "manifest", "description": "Orchestrate full pipeline via manifest state machine" }
+        ],
+        "disambiguation": [
+          {
+            "category": "agentic pipeline",
+            "description": "User wants adversarial software design and implementation workflows",
+            "examples": [
+              "Design this feature with a red-team pass",
+              "Generate adversarial tests for this change",
+              "Run a full implementation and review cycle",
+              "Orchestrate feature lifecycle from manifest"
+            ]
+          }
+        ]
+      }
+    ],
+    "commands": [
+      { "command": "agentic.runGauntlet", "title": "Agentic: Run Gauntlet", "category": "Agentic" },
+      { "command": "agentic.orchestrate", "title": "Agentic: Orchestrate", "category": "Agentic" },
+      { "command": "agentic.deliberate", "title": "Agentic: War Room", "category": "Agentic" },
+      { "command": "agentic.review", "title": "Agentic: Code Review", "category": "Agentic" }
+    ],
+    "menus": {
+      "editor/context": [
+        { "command": "agentic.runGauntlet", "when": "editorTextFocus", "group": "navigation@10" },
+        { "command": "agentic.review", "when": "editorTextFocus", "group": "navigation@11" }
+      ],
+      "explorer/context": [
+        { "command": "agentic.runGauntlet", "when": "resourceScheme == file", "group": "navigation@10" },
+        { "command": "agentic.review", "when": "resourceScheme == file", "group": "navigation@11" }
+      ],
+      "editor/title": [
+        {
+          "command": "agentic.orchestrate",
+          "when": "resourceScheme == file && (resourceFilename == manifest.md || resourcePath =~ /[\\\\/]\\.github[\\\\/]manifests[\\\\/].*\\.md$/)",
+          "group": "navigation@10"
+        }
+      ],
+      "commandPalette": [
+        { "command": "agentic.runGauntlet", "when": "true" },
+        { "command": "agentic.orchestrate", "when": "true" },
+        { "command": "agentic.deliberate", "when": "true" },
+        { "command": "agentic.review", "when": "true" }
+      ]
+    },
+    "configuration": {
+      "title": "Agentic Toolkit",
+      "properties": {
+        "agenticToolkit.autoSaveArtifacts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically save each chat command output into .github pipeline directories."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "compile": "npm run check-types && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && node esbuild.js --production",
+    "vscode:prepublish": "npm run package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "@types/vscode": "^1.93.0",
+    "esbuild": "^0.27.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.6.3"
+  }
+}
