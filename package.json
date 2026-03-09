@@ -49,7 +49,8 @@
       { "command": "agentic.runGauntlet", "title": "Agentic: Run Gauntlet", "category": "Agentic" },
       { "command": "agentic.orchestrate", "title": "Agentic: Orchestrate", "category": "Agentic" },
       { "command": "agentic.deliberate", "title": "Agentic: War Room", "category": "Agentic" },
-      { "command": "agentic.review", "title": "Agentic: Code Review", "category": "Agentic" }
+      { "command": "agentic.review", "title": "Agentic: Code Review", "category": "Agentic" },
+      { "command": "agentic.initSpecKit", "title": "Agentic: Init Spec Kit", "category": "Agentic" }
     ],
     "menus": {
       "editor/context": [
@@ -71,7 +72,8 @@
         { "command": "agentic.runGauntlet", "when": "true" },
         { "command": "agentic.orchestrate", "when": "true" },
         { "command": "agentic.deliberate", "when": "true" },
-        { "command": "agentic.review", "when": "true" }
+        { "command": "agentic.review", "when": "true" },
+        { "command": "agentic.initSpecKit", "when": "true" }
       ]
     },
     "configuration": {
