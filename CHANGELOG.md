@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.2
+
+- Added `Agentic: Init Spec Kit` command that scaffolds `.github/prompts/`, `.github/copilot-instructions.md`, `project-styles.md`, and `manifest.md` in the workspace (existing files are never overwritten)
+
 ## 0.0.1
 
 - Initial extension scaffold

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { initSpecKit } from './init';
 import { createAgenticHandler, followupProvider, ParticipantState } from './participant';
 import { PromptLoader } from './prompts';
 
@@ -44,7 +45,11 @@ export function activate(context: vscode.ExtensionContext): void {
     await openChatWithQuery(queryFromCommand('review', uri));
   });
 
-  context.subscriptions.push(runGauntlet, orchestrate, deliberate, review);
+  const initSpec = vscode.commands.registerCommand('agentic.initSpecKit', async () => {
+    await initSpecKit(context.extensionUri);
+  });
+
+  context.subscriptions.push(runGauntlet, orchestrate, deliberate, review, initSpec);
 }
 
 export function deactivate(): void {}

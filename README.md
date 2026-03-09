@@ -11,6 +11,7 @@ Agentic Toolkit is a VS Code extension that packages the Agentic Architecture Ha
   - Agentic: Orchestrate
   - Agentic: War Room
   - Agentic: Code Review
+  - Agentic: Init Spec Kit
 - Prompt loading strategy:
   1. Workspace override from `.github/prompts/*.prompt.md`
   2. Bundled default prompt from extension `prompts/` directory
@@ -23,6 +24,17 @@ Agentic Toolkit is a VS Code extension that packages the Agentic Architecture Ha
 2. Run a slash command, for example: `@agentic /manifest Build a secure feature flag system`.
 3. Or right-click a file and use an Agentic context action to open chat with the matching command.
 4. To persist command output automatically, enable `agenticToolkit.autoSaveArtifacts` in settings.
+
+### Initializing a new repository
+
+Run **Agentic: Init Spec Kit** from the Command Palette (`Ctrl+Shift+P`) to scaffold all pipeline files in your workspace:
+
+- `.github/prompts/*.prompt.md` — editable workspace overrides for all 8 pipeline commands
+- `.github/copilot-instructions.md` — Agentic pipeline principles for Copilot
+- `project-styles.md` — template for your project-specific language, style, and security rules
+- `manifest.md` — blank feature manifest to start your first pipeline run
+
+Existing files are never overwritten — re-running the command is safe.
 
 When autosave is enabled, command outputs are written to pipeline folders such as `.github/war-room/`, `.github/gauntlet/`, `.github/darwin/`, `.github/code-reviews/`, `.github/chaos/`, and `.github/manifests/`.
 
